@@ -25,7 +25,7 @@
   "author": "Edward González <ejgonzalezviera@gmail.com> (http://onzasystems.com)",
   "license": "ISC",
   "dependencies": {
-    "@onzag/itemize": "0.0.19",
+    "@onzag/itemize": "0.0.20",
     "typescript": "^3.9.3"
   },
   "devDependencies": {
