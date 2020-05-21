@@ -1,0 +1,59 @@
+version: '3.3'
+services: 
+    manager:
+        image: app:latest
+        restart: always
+        volumes: 
+            - ./config:/home/node/app/config
+            - ./logs:/home/node/app/logs
+        depends_on:
+            - redis
+        environment:
+            - INSTANCE_GROUP_ID=%{INSTANCE_GROUP_ID}
+            - INSTANCE_MODE=MANAGER_EXCLUSIVE
+            - NODE_ENV=%{NODE_ENV}
+            - LOG_LEVEL=error
+            - USING_DOCKER=true
+    servers:
+        image: app:latest
+        depends_on:
+            - redis
+            - pgsql
+        ports:
+            - "8000"
+        volumes:
+            - ./config:/home/node/app/config
+            - ./logs:/home/node/app/logs
+        environment: 
+            - INSTANCE_GROUP_ID=%{INSTANCE_GROUP_ID}
+            - INSTANCE_MODE=EXTENDED
+            - NODE_ENV=%{NODE_ENV}
+            - PORT=8000
+            - LOG_LEVEL=error
+            - USING_DOCKER=true
+    redis:
+        image: redis:latest
+        ports:
+            - "%{REDIS_PORT}:6379"
+    nginx:
+        image: nginx:latest
+        ports:
+            - "80:80"
+            - "443:443"
+        depends_on:
+            - servers
+        volumes:
+            - ./key.pem:/etc/key.pem:ro
+            - ./cert.pem:/etc/cert.pem:ro
+            - ./nginx.processed.conf:/etc/nginx/nginx.conf:ro
+            - ./nginx-logs:/var/log/nginx
+    pgsql:
+        image: pgsqlpostgis:latest
+        ports:
+            - "%{DB_PORT}:5432"
+        volumes: 
+            - ./pgdata:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=%{DB_USER}
+            - POSTGRES_PASSWORD=%{DB_PASSWORD}
+            - POSTGRES_DB=%{DB_NAME}
