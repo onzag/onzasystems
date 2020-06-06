@@ -1,6 +1,9 @@
 import React from "react";
-import Navbar from "@onzag/itemize/client/fast-prototyping/components/navbar";
+
+import { Navbar } from "@onzag/itemize/client/fast-prototyping/components/navbar";
 import Route from "@onzag/itemize/client/components/navigation/Route";
+import { Footer } from "@onzag/itemize/client/fast-prototyping/components/footer";
+
 import { LoginDialog } from "@onzag/itemize/client/fast-prototyping/components/login-dialog";
 import { SignupDialog } from "@onzag/itemize/client/fast-prototyping/components/signup-dialog";
 import { RecoverDialog } from "@onzag/itemize/client/fast-prototyping/components/recover-dialog";
@@ -10,7 +13,10 @@ import { ChangePassword } from "@onzag/itemize/client/fast-prototyping/pages/cha
 import { Preferences } from "@onzag/itemize/client/fast-prototyping/pages/preferences";
 import { PrivacyPolicy } from "@onzag/itemize/client/fast-prototyping/pages/privacy-policy";
 import { TermsAndConditions } from "@onzag/itemize/client/fast-prototyping/pages/terms-and-conditions";
+import { Contact } from "@onzag/itemize/client/fast-prototyping/pages/contact";
 import { ResetPassword } from "@onzag/itemize/client/fast-prototyping/pages/reset-password";
+import { Frontpage } from "@onzag/itemize/client/fast-prototyping/pages/frontpage";
+import { News } from "@onzag/itemize/client/fast-prototyping/pages/news";
 
 import { CMS } from "@onzag/itemize/client/fast-prototyping/pages/cms";
 
@@ -30,15 +36,23 @@ export default function App() {
   return (
     <>
       <Navbar LoginDialog={LoginDialog} SignupDialog={SignupDialog} RecoverDialog={RecoverDialog}/>
+
+      <Route path="/" exact={true} component={Frontpage}/>
+
       <Route path="/my-profile" component={MyProfile}/>
       <Route path="/change-password" component={ChangePassword}/>
       <Route path="/profile/:id" component={Profile}/>
       <Route path="/preferences" component={Preferences}/>
       <Route path="/privacy-policy" component={PrivacyPolicy}/>
       <Route path="/terms-and-conditions" component={TermsAndConditions}/>
+      <Route path="/contact" component={Contact}/>
       <Route path="/reset-password" component={ResetPassword}/>
 
       <Route path="/cms" component={CMS}/>
+
+      <Route path="/news" component={News}/>
+
+      <Footer/>
     </>
   );
 }

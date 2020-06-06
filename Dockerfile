@@ -29,7 +29,7 @@ ENV NODE_ENV development
 
 ENV PORT 8000
 ENV INSTANCE_GROUP_ID DOCKER_UNIDENTIFIED_INSTANCE
-ENV INSTANCE_MODE MANAGER
+ENV INSTANCE_MODE ABSOLUTE
 # ENV INSTANCE_MODE EXTENDED
 
 ENV USING_DOCKER true
@@ -43,4 +43,4 @@ COPY dist/data dist/data
 COPY dist/buildnumber dist/
 COPY package.json .
 
-CMD [ "node", "./dist/server/index.js" ]
+CMD [ "node", "-r", "tsconfig-paths/register", "./dist/server/index.js" ]

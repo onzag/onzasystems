@@ -2,9 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "*": [
-        "types/*"
-      ]
+      "@onzag/itemize/*": [
+        "./node_modules/@onzag/itemize/nodejs/*",
+      ],
     },
     "target": "esnext",
     "module": "commonjs",
@@ -19,14 +19,15 @@
     "outDir": "dist",
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "jsx": "react"
   },
   "compileOnSave": true,
   "exclude": [
-    "node_modules",
-    "src/client"
+    "node_modules"
   ],
   "include": [
-    "**/*.ts"
+    "**/*.ts",
+    "**/*.tsx"
   ]
 }
