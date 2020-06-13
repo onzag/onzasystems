@@ -29,7 +29,6 @@
   "fallbackCountryCode": "FI",
   "fallbackCurrency": "EUR",
   "developmentHostname": "dev.onzasystems.com",
-  "stagingHostname": "staging.onzasystems.com",
   "productionHostname": "onzasystems.com",
   "containersRegionMappers": {
     "*": "DE"
