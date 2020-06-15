@@ -1,0 +1,113 @@
+[
+    {
+        "id": "status",
+        "type": "string",
+        "values": [
+            "COMPLETED",
+            "BILLED",
+            "PROBLEM"
+        ]
+    },
+    {
+        "id": "date_sold",
+        "type": "date",
+        "nullable": true
+    },
+    {
+        "id": "customer",
+        "type": "boolean"
+    },
+    {
+        "id": "customer_name",
+        "type": "text",
+        "nullable": true,
+        "maxLength": 255,
+        "hiddenIf": {
+            "property": "customer",
+            "comparator": "equals",
+            "value": {
+                "exactValue": false
+            }
+        },
+        "nullIfHidden": true
+    },
+    {
+        "id": "customer_company",
+        "type": "text",
+        "nullable": true,
+        "maxLength": 255,
+        "hiddenIf": {
+            "property": "customer",
+            "comparator": "equals",
+            "value": {
+                "exactValue": false
+            }
+        },
+        "nullIfHidden": true
+    },
+    {
+        "id": "customer_address",
+        "type": "location",
+        "nullable": true,
+        "hiddenIf": {
+            "property": "customer",
+            "comparator": "equals",
+            "value": {
+                "exactValue": false
+            }
+        },
+        "nullIfHidden": true
+    },
+    {
+        "id": "customer_email",
+        "type": "string",
+        "subtype": "email",
+        "nullable": true,
+        "maxLength": 255,
+        "hiddenIf": {
+            "property": "customer",
+            "comparator": "equals",
+            "value": {
+                "exactValue": false
+            }
+        },
+        "nullIfHidden": true
+    },
+    {
+        "id": "customer_phone",
+        "type": "string",
+        "nullable": true,
+        "maxLength": 255,
+        "hiddenIf": {
+            "property": "customer",
+            "comparator": "equals",
+            "value": {
+                "exactValue": false
+            }
+        },
+        "nullIfHidden": true
+    },
+    {
+        "id": "info",
+        "type": "text",
+        "subtype": "html",
+        "specialProperties": {
+            "mediaProperty": "attachments",
+            "supportsImages": true,
+            "supportsVideos": true,
+            "supportsFiles": true
+        },
+        "nullable": true
+    },
+    {
+        "id": "attachments",
+        "type": "files",
+        "specialProperties": {
+            "smallDimension": "320x",
+            "mediumDimension": "640x",
+            "largeDimension": "1024x"
+        },
+        "hidden": true,
+        "nullable": true
+    }
+]
