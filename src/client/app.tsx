@@ -20,6 +20,8 @@ import { News } from "@onzag/itemize/client/fast-prototyping/pages/news";
 
 import { CMS } from "@onzag/itemize/client/fast-prototyping/pages/cms";
 
+import { Tinksi } from "./pages/tinksi";
+
 // Remember that when adding fast prototyping components they might demand
 // localization data, if you get an error named
 // Uncaught Error: Unknown key in context: xxxxxxx from localization.tsx
@@ -51,6 +53,8 @@ export default function App() {
       <Route path="/cms" component={CMS}/>
 
       <Route path="/news" component={News}/>
+
+      <Route path="/tinksi" component={Tinksi}/>
 
       <Footer/>
     </>

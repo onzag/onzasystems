@@ -3,7 +3,7 @@
   "children": [
     "users",
     "cms",
-    "suomi-connect-registry"
+    "suomi_connect_registry"
   ],
   "i18n": "main-i18n.properties"
 }

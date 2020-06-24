@@ -6,7 +6,8 @@
             "COMPLETED",
             "BILLED",
             "PROBLEM"
-        ]
+        ],
+        "default": "BILLED"
     },
     {
         "id": "date_sold",
@@ -15,7 +16,8 @@
     },
     {
         "id": "customer",
-        "type": "boolean"
+        "type": "boolean",
+        "default": true
     },
     {
         "id": "customer_name",
