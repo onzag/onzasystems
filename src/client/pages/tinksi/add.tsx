@@ -3,12 +3,13 @@ import { ItemDefinitionProvider, IPokeElementsType, IActionResponseWithId } from
 import I18nRead from "@onzag/itemize/client/components/localization/I18nRead";
 import Entry from "@onzag/itemize/client/components/property/Entry";
 import { createStyles, withStyles, WithStyles, Typography, Button } from "@onzag/itemize/client/fast-prototyping/mui-core";
-import { localizedRedirectTo } from "@onzag/itemize/client/components/navigation";
+import { localizedRedirectTo, goBack } from "@onzag/itemize/client/components/navigation";
 import PokeButtonActioner from "@onzag/itemize/client/components/item-definition/PokeButtonActioner";
 import { SubmitButton } from "@onzag/itemize/client/fast-prototyping/components/buttons";
 import Snackbar from "@onzag/itemize/client/fast-prototyping/components/snackbar";
 import SubmitActioner from "@onzag/itemize/client/components/item-definition/SubmitActioner";
 import { BasicView } from "./view";
+import ScrollKeeper from "@onzag/itemize/client/components/util/ScrollKeeper";
 
 const tinksiStyles = createStyles({
   header: {
@@ -163,7 +164,7 @@ export const TinksiAdd = withStyles(tinksiStyles)((props: ITinksiAddProps) => {
     );
   }
   return (
-    <>
+    <ScrollKeeper id="tinksi-add">
       <ItemDefinitionProvider
         itemDefinition="tinksi"
         properties={
@@ -197,7 +198,7 @@ export const TinksiAdd = withStyles(tinksiStyles)((props: ITinksiAddProps) => {
         {content}
 
         <div className={props.classes.buttonContainer}>
-          {prevStep ? <Button color="secondary" onClick={goToStep.bind(null, prevStep)}>
+          {prevStep ? <Button color="secondary" onClick={goBack}>
             <I18nRead id="prev" />
           </Button> : <div/>}
           {nextStep ? (
@@ -214,6 +215,7 @@ export const TinksiAdd = withStyles(tinksiStyles)((props: ITinksiAddProps) => {
             </PokeButtonActioner>
           ) : (
             <SubmitButton
+              buttonColor="primary"
               redirectOnSuccess={redirectOnSuccess}
               i18nId="submit"
               options={{
@@ -260,6 +262,6 @@ export const TinksiAdd = withStyles(tinksiStyles)((props: ITinksiAddProps) => {
           )}
         </SubmitActioner>
       </ItemDefinitionProvider>
-    </>
+    </ScrollKeeper>
   );
 });

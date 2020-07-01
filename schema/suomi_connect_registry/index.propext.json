@@ -7,7 +7,8 @@
             "BILLED",
             "PROBLEM"
         ],
-        "default": "BILLED"
+        "default": "BILLED",
+        "searchDefault": null
     },
     {
         "id": "date_sold",
@@ -17,7 +18,8 @@
     {
         "id": "customer",
         "type": "boolean",
-        "default": true
+        "default": true,
+        "searchDefault": null
     },
     {
         "id": "customer_name",

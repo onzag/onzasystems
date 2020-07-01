@@ -2,8 +2,15 @@ import React from "react";
 import { ItemDefinitionProvider } from "@onzag/itemize/client/providers/item-definition";
 import Entry from "@onzag/itemize/client/components/property/Entry";
 import { createStyles, withStyles, WithStyles, Typography, ExpansionPanel,
-  ExpansionPanelSummary, ExpansionPanelDetails, ExpandMoreIcon } from "@onzag/itemize/client/fast-prototyping/mui-core";
+  ExpansionPanelSummary, ExpansionPanelDetails, ExpandMoreIcon, SearchIcon,
+  Card, CardContent, CardActions, Button } from "@onzag/itemize/client/fast-prototyping/mui-core";
 import I18nRead from "@onzag/itemize/client/components/localization/I18nRead";
+import { SearchButton } from "@onzag/itemize/client/fast-prototyping/components/buttons";
+import SearchActioner from "@onzag/itemize/client/components/search/SearchActioner";
+import { SearchLoaderWithPagination } from "@onzag/itemize/client/fast-prototyping/components/search-loader-with-pagination";
+import View from "@onzag/itemize/client/components/property/View";
+import Link from "@onzag/itemize/client/components/navigation/Link";
+import ScrollKeeper from "@onzag/itemize/client/components/util/ScrollKeeper";
 
 const tinksiStyles = createStyles({
   header: {
@@ -24,16 +31,82 @@ const tinksiStyles = createStyles({
     flexDirection: "column",
     width: "100%",
   },
+  searchButtonContainer: {
+    display: "flex",
+    flexDirection: "row-reverse",
+    paddingBottom: "1rem",
+    marginBottom: "1rem",
+    borderBottom: "solid 1px #ccc",
+    width: "100%",
+    paddingTop: "1rem",
+  },
+  card: {
+    minWidth: "300px",
+    margin: "0 2rem 1rem 1rem",
+  },
+  cardTitle: {
+    fontSize: "1rem",
+  },
+  cardDateSold: {
+    marginBottom: "0.2rem",
+  },
+  cardContainer: {
+    width: "100%",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    display: "flex",
+    flexDirection: "row",
+  },
 });
 
 export const TinksiSearch = withStyles(tinksiStyles)((props: WithStyles<typeof tinksiStyles>) => {
+  const searchOptions = (
+    {
+      requestedProperties: [
+        "status",
+        "date_sold",
+        "customer_name",
+        "model",
+      ],
+      searchByProperties: [
+        "search",
+        "status",
+        "date_sold",
+        "customer",
+        "customer_name",
+        "customer_company",
+        "customer_address",
+        "customer_email",
+        "customer_phone",
+        "activation_date",
+        "shipment_date",
+        "brand",
+        "model",
+        "serial_number",
+        "dev_eui",
+        "app_eui",
+        "app_key",
+        "abp_otaa",
+        "nwk_skey",
+        "app_skey",
+        "dev_addrr",
+        "info",
+      ],
+      limit: 100,
+      offset: 0,
+    }
+  );
+  // TODO search on enter
   return (
-    <>
+    <ScrollKeeper id="tinksi-search" mantainPosition={true}>
       <ItemDefinitionProvider
         itemDefinition="tinksi"
         searchCounterpart={true}
         properties={
           [
+            "search",
+
             "status",
             "date_sold",
             "customer",
@@ -60,6 +133,12 @@ export const TinksiSearch = withStyles(tinksiStyles)((props: WithStyles<typeof t
           ]
         }
       >
+        <SearchActioner>
+          {(actioner) => (
+            <Entry id="search" rendererArgs={{onEnter: actioner.search.bind(null, searchOptions)}}/>
+          )}
+        </SearchActioner>
+
         <ExpansionPanel TransitionProps={{ unmountOnExit: true }} className={props.classes.panel}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
@@ -150,7 +229,57 @@ export const TinksiSearch = withStyles(tinksiStyles)((props: WithStyles<typeof t
             <Entry id="info" searchVariant="search" />
           </ExpansionPanelDetails>
         </ExpansionPanel>
+
+        <div className={props.classes.searchButtonContainer}>
+          <SearchButton
+            i18nId="search"
+            buttonColor="primary"
+            buttonVariant="contained"
+            buttonStartIcon={<SearchIcon/>}
+            options={searchOptions}
+          />
+        </div>
+
+        <SearchLoaderWithPagination pageSize={10}>
+          {(arg, pagination) => {
+            return (
+              <>
+                <div className={props.classes.cardContainer}>
+                  {arg.searchRecords.map((record) => (
+                    <ItemDefinitionProvider {...record.providerProps}>
+                      <Link to={`/tinksi/view/${record.id}`}>
+                        <Card variant="outlined" className={props.classes.card}>
+                          <CardContent>
+                            <Typography className={props.classes.cardTitle} color="textSecondary" gutterBottom={true}>
+                              <View id="status" capitalize={true} />
+                            </Typography>
+                            <Typography variant="h5" component="h2">
+                              <View id="customer_name" />
+                            </Typography>
+                            <Typography className={props.classes.cardDateSold} color="textSecondary">
+                              <View id="date_sold" />
+                            </Typography>
+                            <Typography variant="body2" component="p">
+                              <View id="model" />
+                            </Typography>
+                          </CardContent>
+                          <CardActions>
+                            <Button size="small" variant="outlined" color="secondary">
+                              <I18nRead id="more_details" capitalize={true}/>
+                            </Button>
+                          </CardActions>
+                        </Card>
+                      </Link>
+                    </ItemDefinitionProvider>
+                  ))}
+                </div>
+                {pagination}
+              </>
+            );
+          }}
+        </SearchLoaderWithPagination>
+
       </ItemDefinitionProvider>
-    </>
+    </ScrollKeeper>
   );
 });

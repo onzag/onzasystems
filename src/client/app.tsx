@@ -15,12 +15,12 @@ import { PrivacyPolicy } from "@onzag/itemize/client/fast-prototyping/pages/priv
 import { TermsAndConditions } from "@onzag/itemize/client/fast-prototyping/pages/terms-and-conditions";
 import { Contact } from "@onzag/itemize/client/fast-prototyping/pages/contact";
 import { ResetPassword } from "@onzag/itemize/client/fast-prototyping/pages/reset-password";
-import { Frontpage } from "@onzag/itemize/client/fast-prototyping/pages/frontpage";
 import { News } from "@onzag/itemize/client/fast-prototyping/pages/news";
 
 import { CMS } from "@onzag/itemize/client/fast-prototyping/pages/cms";
 
 import { Tinksi } from "./pages/tinksi";
+import { Frontpage } from "./pages/frontpage";
 
 // Remember that when adding fast prototyping components they might demand
 // localization data, if you get an error named
@@ -37,7 +37,24 @@ import { Tinksi } from "./pages/tinksi";
 export default function App() {
   return (
     <>
-      <Navbar LoginDialog={LoginDialog} SignupDialog={SignupDialog} RecoverDialog={RecoverDialog}/>
+      <Navbar
+        LoginDialog={LoginDialog}
+        SignupDialog={SignupDialog}
+        RecoverDialog={RecoverDialog}
+        menuEntries={[
+          {
+            path: "/tinksi",
+            icon: null,
+            module: "suomi_connect_registry",
+            idef: "tinksi",
+            i18nProps: {
+              id: "name",
+              capitalize: true,
+            },
+          },
+        ]}
+        menuAdminEntries={[]}
+      />
 
       <Route path="/" exact={true} component={Frontpage}/>
 

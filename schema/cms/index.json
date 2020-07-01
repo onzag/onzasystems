@@ -1,5 +1,0 @@
-{
-    "type": "module",
-    "children": ["fragment", "article"],
-    "searchable": false
-}

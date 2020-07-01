@@ -49,14 +49,45 @@ initializeServer(
           ogTitle: capitalize(i18nData.app_name),
           ogDescription: i18nData.app_description,
           ogImage: "/rest/resource/icons/android-chrome-512x512.png",
-          collect: [
-            ["cms", "fragment", 1, lang],
-          ],
+          collect: [],
           // mem id is special, this is a memory id that is used to cache the result
           // make sure to use a different value for different results, do not worry
           // the timestamp signature of the collected values is used so if any of them
           // updates the cached value is refreshed, but nothing else
           memId: "root",
+        };
+      },
+      "/tinksi,/tinksi/search,/tinksi/add/:step": (req, lang, root) => {
+        const tinksiIdef = root.getModuleFor(["suomi_connect_registry"]).getItemDefinitionFor(["tinksi"]);
+        const i18nData = tinksiIdef.getI18nDataFor(lang);
+        return {
+          title: capitalize(i18nData.name),
+          description: i18nData.search_keywords,
+          ogTitle: capitalize(i18nData.name),
+          ogDescription: i18nData.search_keywords,
+          ogImage: "/rest/resource/icons/android-chrome-512x512.png",
+          collect: [],
+          memId: "tinksi-root." + req.originalUrl,
+        };
+      },
+      "/tinksi/view/:id,/tinksi/view/:id/*": (req, lang, root) => {
+        const tinksiIdef = root.getModuleFor(["suomi_connect_registry"]).getItemDefinitionFor(["tinksi"]);
+        const i18nData = tinksiIdef.getI18nDataFor(lang);
+        const id = parseInt(req.params.id, 10);
+        if (isNaN(id)) {
+          return null;
+        }
+
+        return {
+          title: capitalize(i18nData.name),
+          description: i18nData.search_keywords,
+          ogTitle: capitalize(i18nData.name),
+          ogDescription: i18nData.search_keywords,
+          ogImage: "/rest/resource/icons/android-chrome-512x512.png",
+          collect: [
+            ["suomi_connect_registry", "tinksi", id, null],
+          ],
+          memId: "tinksi." + req.originalUrl + "." + id,
         };
       },
       "/profile/:id": (req, lang, root) => {

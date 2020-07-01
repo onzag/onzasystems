@@ -3,11 +3,12 @@ import { ModuleProvider } from "@onzag/itemize/client/providers/module";
 import { NoStateItemDefinitionProvider } from "@onzag/itemize/client/providers/item-definition";
 import I18nRead from "@onzag/itemize/client/components/localization/I18nRead";
 import TitleSetter from "@onzag/itemize/client/components/util/TitleSetter";
-import { Theme, createStyles, withStyles, WithStyles, Container, Paper, Button } from "@onzag/itemize/client/fast-prototyping/mui-core";
-import Route from "@onzag/itemize/nodejs/client/components/navigation/Route";
-import Link from "@onzag/itemize/nodejs/client/components/navigation/Link";
+import { createStyles, withStyles, WithStyles, Container, Paper, Button } from "@onzag/itemize/client/fast-prototyping/mui-core";
+import Route from "@onzag/itemize/client/components/navigation/Route";
+import Link from "@onzag/itemize/client/components/navigation/Link";
 import { TinksiAdd } from "./add";
 import { TinksiSearch } from "./search";
+import { TinksiView } from "./view";
 
 const tinksiStyles = createStyles({
   container: {
@@ -57,6 +58,7 @@ export const Tinksi = withStyles(tinksiStyles)((props: WithStyles<typeof tinksiS
 
           <Route path="/tinksi/add/:step" component={TinksiAdd}/>
           <Route path="/tinksi/search" component={TinksiSearch}/>
+          <Route path="/tinksi/view/:id" component={TinksiView}/>
         </ModuleProvider>
       </Paper>
     </Container >
