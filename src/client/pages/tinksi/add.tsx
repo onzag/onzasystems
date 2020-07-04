@@ -81,6 +81,7 @@ export const TinksiAdd = withStyles(tinksiStyles)((props: ITinksiAddProps) => {
           </Typography>
         </div>
         <Entry id="customer" />
+        <Entry id="customer_billed" />
         <Entry id="customer_name" />
         <Entry id="customer_company" />
         <Entry id="customer_address" />
@@ -177,6 +178,7 @@ export const TinksiAdd = withStyles(tinksiStyles)((props: ITinksiAddProps) => {
             "customer_address",
             "customer_email",
             "customer_phone",
+            "customer_billed",
             "info",
             "attachments",
 
@@ -228,6 +230,7 @@ export const TinksiAdd = withStyles(tinksiStyles)((props: ITinksiAddProps) => {
                   "customer_address",
                   "customer_email",
                   "customer_phone",
+                  "customer_billed",
                   "info",
                   "attachments",
 

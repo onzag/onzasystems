@@ -79,6 +79,7 @@ export const TinksiSearch = withStyles(tinksiStyles)((props: WithStyles<typeof t
         "customer_address",
         "customer_email",
         "customer_phone",
+        "customer_billed",
         "activation_date",
         "shipment_date",
         "brand",
@@ -115,6 +116,7 @@ export const TinksiSearch = withStyles(tinksiStyles)((props: WithStyles<typeof t
             "customer_address",
             "customer_email",
             "customer_phone",
+            "customer_billed",
             "info",
             "attachments",
 
@@ -167,6 +169,8 @@ export const TinksiSearch = withStyles(tinksiStyles)((props: WithStyles<typeof t
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={props.classes.panelContent}>
             <Entry id="customer" searchVariant="exact" />
+            <Entry id="customer_billed" searchVariant="from" />
+            <Entry id="customer_billed" searchVariant="to" />
             <Entry id="customer_name" searchVariant="search" />
             <Entry id="customer_company" searchVariant="search" />
             <Entry id="customer_address" searchVariant="location" />
@@ -241,7 +245,7 @@ export const TinksiSearch = withStyles(tinksiStyles)((props: WithStyles<typeof t
         </div>
 
         <SearchLoaderWithPagination pageSize={10}>
-          {(arg, pagination) => {
+          {(arg, pagination, noResults) => {
             return (
               <>
                 <div className={props.classes.cardContainer}>
@@ -273,6 +277,7 @@ export const TinksiSearch = withStyles(tinksiStyles)((props: WithStyles<typeof t
                     </ItemDefinitionProvider>
                   ))}
                 </div>
+                {noResults ? <I18nRead id="no_results" capitalize={true}/> : null}
                 {pagination}
               </>
             );

@@ -135,6 +135,24 @@ export const BasicView = withStyles(basicViewStyles)((props: IBasicViewProps) =>
                   <>
                     <div className={props.classes.infoRow}>
                       <Typography variant="body2" className={props.classes.infoRowLabel}>
+                        <I18nRead id="label" propertyId="customer_billed" capitalize={true} />
+                      </Typography>
+                      <Typography variant="body2" className={props.classes.infoRowInfo}>
+                        <View
+                          id="customer_billed"
+                          useAppliedValue={props.useAppliedValue}
+                          rendererArgs={
+                            {
+                              NullComponent: I18nRead,
+                              nullComponentArgs: { id: "unspecified", capitalize: true },
+                            }
+                          }
+                        />
+                      </Typography>
+                      <EditButton url={props.useEditUrl} field="customer_billed" className={props.classes.editButton}/>
+                    </div>
+                    <div className={props.classes.infoRow}>
+                      <Typography variant="body2" className={props.classes.infoRowLabel}>
                         <I18nRead id="label" propertyId="customer_name" capitalize={true} />
                       </Typography>
                       <Typography variant="body2" className={props.classes.infoRowInfo}>
@@ -528,6 +546,7 @@ const TinksiEdit = withStyles(tinksiViewStyles)((props: ITinksiEditProps) => {
               "customer_address",
               "customer_email",
               "customer_phone",
+              "customer_billed",
               "info",
               "attachments",
 
@@ -570,6 +589,7 @@ export const TinksiView = withStyles(tinksiViewStyles)((props: ITinksiViewProps)
             "customer_address",
             "customer_email",
             "customer_phone",
+            "customer_billed",
             "info",
             "attachments",
 

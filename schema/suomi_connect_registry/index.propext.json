@@ -92,6 +92,19 @@
         "nullIfHidden": true
     },
     {
+        "id": "customer_billed",
+        "type": "currency",
+        "nullable": true,
+        "hiddenIf": {
+            "property": "customer",
+            "comparator": "equals",
+            "value": {
+                "exactValue": false
+            }
+        },
+        "nullIfHidden": true
+    },
+    {
         "id": "info",
         "type": "text",
         "subtype": "html",
