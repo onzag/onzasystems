@@ -3,8 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@onzag/itemize/*": [
-        "./node_modules/@onzag/itemize/nodejs/*",
-      ],
+        "./node_modules/@onzag/itemize/nodejs/*"
+      ]
     },
     "target": "esnext",
     "module": "commonjs",

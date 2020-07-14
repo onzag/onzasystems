@@ -13,7 +13,7 @@ import { fileURLAbsoluter } from "@onzag/itemize/util";
 // isn't recommended to attempt to set it up that way
 
 // for a given build number all the resources are considered equal,
-// resources are contained within the /rest/resource/ endpoint during
+// resources are contained within the /rest/resources/ endpoint during
 // development of the app remember to disable service workers by making it
 // bypass for network or otherwise the content you will get will always be the
 // same, this bypasses the build number functionality on the client side
@@ -52,6 +52,7 @@ initializeServer(
           collect: [
             ["cms", "fragment", 1, lang],
           ],
+          collectResources: [],
           // mem id is special, this is a memory id that is used to cache the result
           // make sure to use a different value for different results, do not worry
           // the timestamp signature of the collected values is used so if any of them
@@ -115,15 +116,35 @@ initializeServer(
           collect: [
             ["users", "user", userId, null],
           ],
+          collectResources: [],
           // note how the memory id here includes the user id
           memId: "profile." + userId,
         };
       },
     },
+    // These are the same as of the client side
     rendererContext,
     mainComponent: React.createElement(App, null),
     mainWrapper,
     appWrapper,
+    // the style collector which collects style for material UI SSR
     collector: styleCollector,
+  },
+  {
+    seoRules: {
+      "/": {
+        crawable: true,
+      },
+      "profile/:id": {
+        crawable: true,
+        collect: [
+          ["users", "user"],
+        ],
+      },
+    },
+    // remember to specify the proper container id or otherwise you will get an error
+    // refer to your sensitive configuration to see your available container ids
+    // that is where sitemaps are stored
+    seoContainerId: "DE",
   },
 );

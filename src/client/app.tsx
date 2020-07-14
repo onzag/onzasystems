@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Navbar } from "@onzag/itemize/client/fast-prototyping/components/navbar";
+import { Navbar } from "@onzag/itemize/client/fast-prototyping/components/navbar";
 import Route from "@onzag/itemize/client/components/navigation/Route";
 import { Footer } from "@onzag/itemize/client/fast-prototyping/components/footer";
 
