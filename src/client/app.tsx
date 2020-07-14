@@ -17,8 +17,6 @@ import { Contact } from "@onzag/itemize/client/fast-prototyping/pages/contact";
 import { ResetPassword } from "@onzag/itemize/client/fast-prototyping/pages/reset-password";
 import { News } from "@onzag/itemize/client/fast-prototyping/pages/news";
 
-import { CMS } from "@onzag/itemize/client/fast-prototyping/pages/cms";
-
 import { Tinksi } from "./pages/tinksi";
 import { Frontpage } from "./pages/frontpage";
 
@@ -66,8 +64,6 @@ export default function App() {
       <Route path="/terms-and-conditions" component={TermsAndConditions}/>
       <Route path="/contact" component={Contact}/>
       <Route path="/reset-password" component={ResetPassword}/>
-
-      <Route path="/cms" component={CMS}/>
 
       <Route path="/news" component={News}/>
 

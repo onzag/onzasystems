@@ -50,6 +50,7 @@ initializeServer(
           ogDescription: i18nData.app_description,
           ogImage: "/rest/resource/icons/android-chrome-512x512.png",
           collect: [],
+          collectResources: [],
           // mem id is special, this is a memory id that is used to cache the result
           // make sure to use a different value for different results, do not worry
           // the timestamp signature of the collected values is used so if any of them
@@ -67,6 +68,7 @@ initializeServer(
           ogDescription: i18nData.search_keywords,
           ogImage: "/rest/resource/icons/android-chrome-512x512.png",
           collect: [],
+          collectResources: [],
           memId: "tinksi-root." + req.originalUrl,
         };
       },
@@ -87,6 +89,7 @@ initializeServer(
           collect: [
             ["suomi_connect_registry", "tinksi", id, null],
           ],
+          collectResources: [],
           memId: "tinksi." + req.originalUrl + "." + id,
         };
       },
@@ -146,6 +149,7 @@ initializeServer(
           collect: [
             ["users", "user", userId, null],
           ],
+          collectResources: [],
           // note how the memory id here includes the user id
           memId: "profile." + userId,
         };
@@ -156,5 +160,19 @@ initializeServer(
     mainWrapper,
     appWrapper,
     collector: styleCollector,
+  },
+  {
+    seoRules: {
+      "/": {
+        crawable: true,
+      },
+      "profile/:id": {
+        crawable: true,
+        collect: [
+          ["users", "user"],
+        ],
+      },
+    },
+    seoContainerId: "DE",
   },
 );
