@@ -19,6 +19,7 @@ import { Frontpage } from "@onzag/itemize/client/fast-prototyping/pages/frontpag
 import { News } from "@onzag/itemize/client/fast-prototyping/pages/news";
 
 import { CMS } from "@onzag/itemize/client/fast-prototyping/pages/cms";
+import { References } from "./pages/references";
 
 // Remember that when adding fast prototyping components they might demand
 // localization data, if you get an error named
@@ -47,6 +48,8 @@ export default function App() {
       <Route path="/terms-and-conditions" component={TermsAndConditions}/>
       <Route path="/contact" component={Contact}/>
       <Route path="/reset-password" component={ResetPassword}/>
+
+      <Route path="/references" component={References}/>
 
       <Route path="/cms" component={CMS}/>
 

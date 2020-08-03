@@ -1,0 +1,17 @@
+{
+    "type": "item",
+    "properties": [
+        {
+            "id": "reference",
+            "type": "integer",
+            "subtype": "reference",
+            "specialProperties": {
+                "referencedModule": "users",
+                "referencedItemDefinition": "user",
+                "referencedSearchProperty": "username",
+                "referencedDisplayProperty": "username"
+            }
+        }
+    ],
+    "searchable": false
+}
