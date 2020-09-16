@@ -2,20 +2,21 @@
   "entry": "schema/root",
   "appName": "onzasystems",
   "supportedLanguages": [
-    "en",
-    "es"
+    "en"
   ],
   "rtlLanguages": [],
   "dictionaries": {
-    "en": "english",
-    "es": "spanish"
+    "en": "english"
   },
   "roles": [
-    "ADMIN",
-    "USER"
+    "ADMIN"
   ],
   "fontUrl": "https://fonts.googleapis.com/css?family=Open+Sans:300,400,500&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese",
   "fontName": "Open Sans",
+  "cacheableExtHostnames": [
+    "fonts.googleapis.com",
+    "fonts.gstatic.com"
+  ],
   "manifest": {
     "backgroundColor": "#FFFFFF",
     "themeColor": "#000000",
@@ -29,11 +30,10 @@
   "fallbackCurrency": "EUR",
   "developmentHostname": "dev.onzasystems.com",
   "productionHostname": "onzasystems.com",
-  "cacheableExtHostnames": ["fonts.googleapis.com", "fonts.gstatic.com"],
   "containersRegionMappers": {
-    "*": "DE"
+    "*": "MAIN"
   },
   "containersHostnamePrefixes": {
-    "DE": "storage.de.cloud.ovh.net/v1/AUTH_4c680f670af7484da69b156c12726677/ObjectStorageTestContainer/"
+    "MAIN": "storage.de.cloud.ovh.net/v1/AUTH_4c680f670af7484da69b156c12726677/ObjectStorageTestContainer/"
   }
 }

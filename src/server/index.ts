@@ -53,11 +53,6 @@ initializeServer(
             ["cms", "fragment", 1, lang],
           ],
           collectResources: [],
-          // mem id is special, this is a memory id that is used to cache the result
-          // make sure to use a different value for different results, do not worry
-          // the timestamp signature of the collected values is used so if any of them
-          // updates the cached value is refreshed, but nothing else
-          memId: "root",
         };
       },
       "/profile/:id": (req, lang, root) => {
@@ -101,6 +96,7 @@ initializeServer(
             // container they are in, because containers aren't centralized
             // we need to use this function,
             const absolutedFile = fileURLAbsoluter(
+              process.env.NODE_ENV === "production" ? config.productionHostname : config.developmentHostname,
               config.containersHostnamePrefixes,
               collectedValues[0].value.DATA.profile_picture,
               userIdef,
@@ -117,8 +113,6 @@ initializeServer(
             ["users", "user", userId, null],
           ],
           collectResources: [],
-          // note how the memory id here includes the user id
-          memId: "profile." + userId,
         };
       },
     },
@@ -142,9 +136,5 @@ initializeServer(
         ],
       },
     },
-    // remember to specify the proper container id or otherwise you will get an error
-    // refer to your sensitive configuration to see your available container ids
-    // that is where sitemaps are stored
-    seoContainerId: "DE",
   },
 );

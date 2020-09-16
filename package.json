@@ -1,7 +1,7 @@
 {
   "name": "onzasystems",
   "version": "1.0.0",
-  "description": "",
+  "description": "Onza Systems website",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,27 +25,27 @@
     "type": "git",
     "url": "git+https://github.com/onzag/onzasystems.git"
   },
-  "author": "Edward González <ejgonzalezviera@gmail.com> (http://onzasystems.com)",
-  "license": "ISC",
+  "author": "Edward González",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/onzag/onzasystems/issues"
   },
   "homepage": "https://github.com/onzag/onzasystems#readme",
   "dependencies": {
-    "@onzag/itemize": "0.0.36",
-    "@types/react": "^16.9.43",
+    "@onzag/itemize": "0.0.49",
+    "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "deep-equal": "^1.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.4",
+    "@babel/core": "^7.11.6",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-transform-regenerator": "^7.10.4",
-    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
     "babel-core": "^6.26.3",
@@ -61,7 +61,7 @@
     "tslint": "^5.20.1",
     "tslint-react": "^3.6.0",
     "url-loader": "^1.1.2",
-    "webpack": "^4.43.0",
+    "webpack": "^4.44.1",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
     "worker-injector-generator-plugin": "^1.0.3"
