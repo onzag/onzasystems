@@ -3,7 +3,6 @@ import I18nRead from "@onzag/itemize/client/components/localization/I18nRead";
 import TitleSetter from "@onzag/itemize/client/components/util/TitleSetter";
 import { Articles } from "./articles";
 import { Hero } from "./hero";
-import { Social } from "./social";
 
 /**
  * Provides the frontpage
@@ -22,7 +21,6 @@ export function Frontpage() {
       </I18nRead>
       <Hero />
       <Articles />
-      <Social />
     </>
   );
 }

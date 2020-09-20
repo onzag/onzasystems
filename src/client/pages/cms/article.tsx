@@ -10,7 +10,8 @@ import { SubmitButton } from "@onzag/itemize/client/fast-prototyping/components/
 import Snackbar from "@onzag/itemize/client/fast-prototyping/components/snackbar";
 import { ItemDefinitionLoader } from "@onzag/itemize/client/fast-prototyping/components/item-definition-loader";
 import { Paper, createStyles, withStyles,
-  WithStyles, Container, TextField, Box, Typography } from "@onzag/itemize/client/fast-prototyping/mui-core";
+  WithStyles, Container, TextField, Box, Typography,
+  Card } from "@onzag/itemize/client/fast-prototyping/mui-core";
 
 import { articlesStyles } from "../frontpage/articles";
 
@@ -39,28 +40,29 @@ const articleStyles = createStyles({
  * @returns a react element
  */
 const SingleArticle = withStyles(articlesStyles)((props: WithStyles<typeof articlesStyles>) => {
-  return (
-    <div className={props.classes.articleContainer}>
-      <div className={props.classes.articleImageContainer}>
-        <View
-          id="summary_image"
-          rendererArgs={{
-            imageClassName: props.classes.articleImage,
-            imageSizes: "300px",
-            lazyLoad: true,
-          }}
-        />
-      </div>
-      <div className={props.classes.articleText}>
-        <Typography variant="h4"><View id="title" /></Typography>
-        <div className={props.classes.articleSummaryContainer}>
-          <div className={props.classes.articleSummary}>
-            <View id="summary" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  return null;
+  // return (
+  //   <Card>
+  //     <div>
+  //       <View
+  //         id="summary_image"
+  //         rendererArgs={{
+  //           // imageClassName: props.classes.articleImage,
+  //           imageSizes: "300px",
+  //           lazyLoad: true,
+  //         }}
+  //       />
+  //     </div>
+  //     <div className={props.classes.articleText}>
+  //       <Typography variant="h4"><View id="title" /></Typography>
+  //       <div className={props.classes.articleSummaryContainer}>
+  //         <div className={props.classes.articleSummary}>
+  //           <View id="summary" />
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </Card>
+  // );
 });
 
 const redirectOnSuccess = (status: IActionResponseWithId) =>

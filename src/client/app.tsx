@@ -14,7 +14,7 @@ import { ResetPassword } from "./pages/reset-password";
 import { Profile } from "./pages/profile";
 import { MyProfile } from "./pages/my-profile";
 import { ChangePassword } from "./pages/change-password";
-import { News } from "./pages/news";
+import { Article } from "./pages/article";
 import { CMS } from "./pages/cms";
 
 import { Avatar } from "./components/avatar";
@@ -107,7 +107,7 @@ export default function App() {
 
       <Route path="/profile/:id" component={Profile}/>
       <Route path="/my-profile" component={MyProfile}/>
-      <Route path="/news" component={News}/>
+      <Route path="/article/:id" component={Article}/>
 
       <Route path="/reset-password" component={ResetPassword}/>
       <Route path="/change-password" component={ChangePassword}/>

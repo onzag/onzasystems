@@ -8,10 +8,13 @@ import { ItemDefinitionLoader } from "@onzag/itemize/client/fast-prototyping/com
 import View from "@onzag/itemize/client/components/property/View";
 import I18nRead from "@onzag/itemize/client/components/localization/I18nRead";
 
-import { Container, WithStyles, withStyles,
-  Theme, createStyles, Paper, Typography, Divider } from "@onzag/itemize/client/fast-prototyping/mui-core";
+import {
+  Container, WithStyles, withStyles,
+  Theme, createStyles, Paper, Typography, Divider,
+} from "@onzag/itemize/client/fast-prototyping/mui-core";
 
 import { Avatar } from "../../components/avatar";
+import AppLanguageRetriever from "@onzag/itemize/client/components/localization/AppLanguageRetriever";
 
 /**
  * The article page props
@@ -126,12 +129,13 @@ const ArticleContent = withStyles(articleContentStyles)((props: WithStyles<typeo
           <div className={props.classes.headerImageContainer}>
             <View
               id="summary_image"
+              cacheFiles={true}
               rendererArgs={{
                 imageClassName: props.classes.headerImage,
                 imageSizes: "70vw",
               }}
             />
-            <div className={props.classes.headerOverlay}/>
+            <div className={props.classes.headerOverlay} />
             <Typography variant="h3" className={props.classes.title}>
               <Reader id="title">{(title: string) => title}</Reader>
             </Typography>
@@ -141,7 +145,8 @@ const ArticleContent = withStyles(articleContentStyles)((props: WithStyles<typeo
                   <ItemDefinitionProvider
                     itemDefinition="user"
                     forId={createdBy}
-                    static="TOTAL"
+                    static="NO_LISTENING"
+                    longTermCaching={true}
                     disableExternalChecks={true}
                     properties={[
                       "username",
@@ -156,7 +161,7 @@ const ArticleContent = withStyles(articleContentStyles)((props: WithStyles<typeo
                             itemDefinition="article"
                           >
                             <Typography variant="h3" className={props.classes.publisher}>
-                              <I18nRead id="by" args={[username]}/>
+                              <I18nRead id="by" args={[username]} />
                             </Typography>
                           </NoStateItemDefinitionProvider>
                         </ModuleProvider>
@@ -175,7 +180,7 @@ const ArticleContent = withStyles(articleContentStyles)((props: WithStyles<typeo
           <div className={props.classes.innerContainer + " trusted"}>
             <div className={props.classes.dateInfo}>
               <Typography variant="body2">
-                <View id="created_at" rendererArgs={{ dateFormat: "LLLL" }}/>
+                <View id="created_at" rendererArgs={{ dateFormat: "LLLL" }} />
               </Typography>
               <Reader id="edited_at">
                 {(editedAt: string) => {
@@ -201,7 +206,7 @@ const ArticleContent = withStyles(articleContentStyles)((props: WithStyles<typeo
                 }}
               </Reader>
             </div>
-            <View id="content"/>
+            <View id="content" cacheFiles={true}/>
           </div>
         </ItemDefinitionLoader>
       </Paper>
@@ -219,31 +224,36 @@ export function Article(props: IArticleProps) {
   const articleId = parseInt(props.match.params.id, 10) || null;
   return (
     <>
-      <ModuleProvider module="cms">
-        <ItemDefinitionProvider
-          itemDefinition="article"
-          forId={articleId}
-          static="TOTAL"
-          properties={
-            [
-              "title",
-              "locale",
-              "content",
-              "summary_image",
-              "attachments",
-            ]
-          }
-        >
-          <Reader id="title">
-            {(title: string) => (
-              <TitleSetter>
-                {title}
-              </TitleSetter>
-            )}
-          </Reader>
-          <ArticleContent/>
-        </ItemDefinitionProvider>
-      </ModuleProvider>
+      <AppLanguageRetriever>
+        {(languageData) => (
+          <ModuleProvider module="cms">
+            <ItemDefinitionProvider
+              itemDefinition="article"
+              forId={articleId}
+              forVersion={languageData.currentLanguage.code}
+              static="NO_LISTENING"
+              longTermCaching={true}
+              properties={
+                [
+                  "title",
+                  "content",
+                  "summary_image",
+                  "attachments",
+                ]
+              }
+            >
+              <Reader id="title">
+                {(title: string) => (
+                  <TitleSetter>
+                    {title}
+                  </TitleSetter>
+                )}
+              </Reader>
+              <ArticleContent />
+            </ItemDefinitionProvider>
+          </ModuleProvider>
+        )}
+      </AppLanguageRetriever>
     </>
   );
 }
