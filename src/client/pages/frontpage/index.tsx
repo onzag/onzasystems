@@ -3,6 +3,7 @@ import I18nRead from "@onzag/itemize/client/components/localization/I18nRead";
 import TitleSetter from "@onzag/itemize/client/components/util/TitleSetter";
 import { Articles } from "./articles";
 import { Hero } from "./hero";
+import { FragmentBit } from "./fragment-bit";
 
 /**
  * Provides the frontpage
@@ -21,6 +22,9 @@ export function Frontpage() {
       </I18nRead>
       <Hero />
       <Articles />
+      <FragmentBit id={11} />
+      <FragmentBit id={12} />
+      <FragmentBit id={13} />
     </>
   );
 }

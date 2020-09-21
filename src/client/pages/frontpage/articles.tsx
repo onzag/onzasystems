@@ -1,12 +1,11 @@
 import React from "react";
 import { ModuleProvider } from "@onzag/itemize/client/providers/module";
-import { ItemDefinitionProvider, NoStateItemDefinitionProvider } from "@onzag/itemize/client/providers/item-definition";
+import { ItemDefinitionProvider } from "@onzag/itemize/client/providers/item-definition";
 import View from "@onzag/itemize/client/components/property/View";
 import AppLanguageRetriever from "@onzag/itemize/client/components/localization/AppLanguageRetriever";
 import Link from "@onzag/itemize/client/components/navigation/Link";
 import I18nRead from "@onzag/itemize/client/components/localization/I18nRead";
 import { ItemDefinitionLoader } from "@onzag/itemize/client/fast-prototyping/components/item-definition-loader";
-import Reader from "@onzag/itemize/client/components/property/Reader";
 
 import {
   withStyles, createStyles, WithStyles, CardActionArea, CardMedia,
@@ -36,7 +35,7 @@ export const articlesStyles = (theme: Theme) => createStyles({
     padding: 0,
   },
   gridContainer: {
-    padding: "1rem",
+    padding: "3rem 1rem 1rem 1rem",
   },
 });
 
@@ -51,11 +50,9 @@ export const Articles = withStyles(articlesStyles)((props: WithStyles<typeof art
     <Container maxWidth="md" className={props.classes.container}>
       <Paper className={props.classes.paper}>
         <ModuleProvider module="cms">
-          <NoStateItemDefinitionProvider itemDefinition="article">
-            <Typography variant="h2" className={props.classes.featuresTitle}>
-              <I18nRead id="features" capitalize={true} />
-            </Typography>
-          </NoStateItemDefinitionProvider>
+          <Typography variant="h2" className={props.classes.featuresTitle}>
+            <I18nRead id="purpose" capitalize={true} />
+          </Typography>
           <AppLanguageRetriever>
             {(languageData) => (
               <Grid container={true} spacing={3} className={props.classes.gridContainer}>

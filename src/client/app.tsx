@@ -4,7 +4,7 @@ import Route from "@onzag/itemize/client/components/navigation/Route";
 
 import { Navbar } from "@onzag/itemize/client/fast-prototyping/components/navbar";
 import { IMenuEntry } from "@onzag/itemize/client/fast-prototyping/components/navbar/menu";
-import { ImportantDevicesIcon, HomeIcon, LibraryBooksIcon } from "@onzag/itemize/client/fast-prototyping/mui-core";
+import { ImportantDevicesIcon, HomeIcon } from "@onzag/itemize/client/fast-prototyping/mui-core";
 
 import { Frontpage } from "./pages/frontpage";
 import { Contact } from "./pages/contact";
@@ -60,16 +60,6 @@ export const MENU_ENTRIES: IMenuEntry[] = [
     icon: <HomeIcon />,
     i18nProps: {
       id: "home",
-      capitalize: true,
-    },
-  },
-  {
-    path: "/news",
-    icon: <LibraryBooksIcon />,
-    module: "cms",
-    idef: "article",
-    i18nProps: {
-      id: "news",
       capitalize: true,
     },
   },
