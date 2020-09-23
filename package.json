@@ -16,7 +16,7 @@
     "start-production-server": "NODE_ENV=production node -r tsconfig-paths/register ./dist/server/index.js",
     "setup": "itemize setup",
     "build-data": "itemize build-data",
-    "build-database": "itemize build-database",
+    "build-database": "INSTANCE_MODE=BUILD_DATABASE itemize build-database",
     "get-deployable": "itemize get-deployable",
     "start-dev-environment": "itemize start-dev-environment",
     "stop-dev-environment": "itemize stop-dev-environment"
@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/onzag/onzasystems#readme",
   "dependencies": {
-    "@onzag/itemize": "0.0.56",
+    "@onzag/itemize": "0.0.58",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "deep-equal": "^1.1.1",
