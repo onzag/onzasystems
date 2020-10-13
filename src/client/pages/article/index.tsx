@@ -3,8 +3,8 @@ import React from "react";
 import Reader from "@onzag/itemize/client/components/property/Reader";
 import TitleSetter from "@onzag/itemize/client/components/util/TitleSetter";
 import { ModuleProvider } from "@onzag/itemize/client/providers/module";
-import { ItemDefinitionProvider, NoStateItemDefinitionProvider } from "@onzag/itemize/client/providers/item-definition";
-import { ItemDefinitionLoader } from "@onzag/itemize/client/fast-prototyping/components/item-definition-loader";
+import { ItemProvider, NoStateItemProvider } from "@onzag/itemize/client/providers/item";
+import { ItemLoader } from "@onzag/itemize/client/fast-prototyping/components/item-loader";
 import View from "@onzag/itemize/client/components/property/View";
 import I18nRead from "@onzag/itemize/client/components/localization/I18nRead";
 
@@ -125,7 +125,7 @@ const ArticleContent = withStyles(articleContentStyles)((props: WithStyles<typeo
   return (
     <Container maxWidth="md" className={props.classes.container}>
       <Paper className={props.classes.paper}>
-        <ItemDefinitionLoader fullWidth={true}>
+        <ItemLoader fullWidth={true}>
           <div className={props.classes.headerImageContainer}>
             <View
               id="summary_image"
@@ -142,7 +142,7 @@ const ArticleContent = withStyles(articleContentStyles)((props: WithStyles<typeo
             <Reader id="created_by">
               {(createdBy: number) => (
                 <ModuleProvider module="users">
-                  <ItemDefinitionProvider
+                  <ItemProvider
                     itemDefinition="user"
                     forId={createdBy}
                     static="NO_LISTENING"
@@ -157,13 +157,13 @@ const ArticleContent = withStyles(articleContentStyles)((props: WithStyles<typeo
                     <Reader id="username">
                       {(username: string) => (
                         <ModuleProvider module="cms">
-                          <NoStateItemDefinitionProvider
+                          <NoStateItemProvider
                             itemDefinition="article"
                           >
                             <Typography variant="h3" className={props.classes.publisher}>
                               <I18nRead id="by" args={[username]} />
                             </Typography>
-                          </NoStateItemDefinitionProvider>
+                          </NoStateItemProvider>
                         </ModuleProvider>
                       )}
                     </Reader>
@@ -173,7 +173,7 @@ const ArticleContent = withStyles(articleContentStyles)((props: WithStyles<typeo
                       size="medium"
                       profileURL={profileURLFn}
                     />
-                  </ItemDefinitionProvider>
+                  </ItemProvider>
                 </ModuleProvider>
               )}</Reader>
           </div>
@@ -208,7 +208,7 @@ const ArticleContent = withStyles(articleContentStyles)((props: WithStyles<typeo
             </div>
             <View id="content" cacheFiles={true}/>
           </div>
-        </ItemDefinitionLoader>
+        </ItemLoader>
       </Paper>
     </Container>
   );
@@ -227,7 +227,7 @@ export function Article(props: IArticleProps) {
       <AppLanguageRetriever>
         {(languageData) => (
           <ModuleProvider module="cms">
-            <ItemDefinitionProvider
+            <ItemProvider
               itemDefinition="article"
               forId={articleId}
               forVersion={languageData.currentLanguage.code}
@@ -250,7 +250,7 @@ export function Article(props: IArticleProps) {
                 )}
               </Reader>
               <ArticleContent />
-            </ItemDefinitionProvider>
+            </ItemProvider>
           </ModuleProvider>
         )}
       </AppLanguageRetriever>

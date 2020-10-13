@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ItemDefinitionProvider } from "@onzag/itemize/client/providers/item-definition";
+import { ItemProvider } from "@onzag/itemize/client/providers/item";
 import Link from "@onzag/itemize/client/components/navigation/Link";
 import { LogActioner } from "@onzag/itemize/client/components/login/LogActioner";
 import I18nRead from "@onzag/itemize/client/components/localization/I18nRead";
@@ -86,7 +86,7 @@ function runManyFunctions(functions: Array<() => void>) {
  */
 export const SignupDialog = withStyles(signupDialogStyles)((props: ISignupDialogProps) => {
   return (
-    <ItemDefinitionProvider
+    <ItemProvider
       itemDefinition="user"
       properties={[
         "username",
@@ -118,12 +118,12 @@ export const SignupDialog = withStyles(signupDialogStyles)((props: ISignupDialog
                 <form>
                   <Entry
                     id="username"
-                    onChange={actioner.dismissError}
+                    onEntryDrivenChange={actioner.dismissError}
                     showAsInvalid={!!actioner.error}
                     icon={<AccountCircleIcon/>}
                     autoFocus={true}
                   />
-                  <Entry id="password" onChange={actioner.dismissError} showAsInvalid={!!actioner.error} />
+                  <Entry id="password" onEntryDrivenChange={actioner.dismissError} showAsInvalid={!!actioner.error} />
                   <AppLanguageRetriever>
                     {(languageData) => (
                       <Setter id="app_language" value={languageData.currentLanguage.code}/>
@@ -205,6 +205,6 @@ export const SignupDialog = withStyles(signupDialogStyles)((props: ISignupDialog
           </I18nRead>
         )}
       </LogActioner>
-    </ItemDefinitionProvider>
+    </ItemProvider>
   );
 });

@@ -1,7 +1,7 @@
 import React from "react";
 import { ModuleProvider } from "@onzag/itemize/client/providers/module";
-import { ItemDefinitionProvider } from "@onzag/itemize/client/providers/item-definition";
-import { ItemDefinitionLoader } from "@onzag/itemize/client/fast-prototyping/components/item-definition-loader";
+import { ItemProvider } from "@onzag/itemize/client/providers/item";
+import { ItemLoader } from "@onzag/itemize/client/fast-prototyping/components/item-loader";
 import { Paper, createStyles, withStyles, WithStyles, Container, Divider, Box,
   NotificationsIcon, MenuBookIcon, DoneOutlineIcon, PersonPinIcon } from "@onzag/itemize/client/fast-prototyping/mui-core";
 import Snackbar from "@onzag/itemize/client/fast-prototyping/components/snackbar";
@@ -11,7 +11,7 @@ import UserDataRetriever from "@onzag/itemize/client/components/user/UserDataRet
 import I18nRead from "@onzag/itemize/client/components/localization/I18nRead";
 import TitleSetter from "@onzag/itemize/client/components/util/TitleSetter";
 import Entry from "@onzag/itemize/client/components/property/Entry";
-import SubmitActioner from "@onzag/itemize/client/components/item-definition/SubmitActioner";
+import SubmitActioner from "@onzag/itemize/client/components/item/SubmitActioner";
 
 /**
  * The styles for the preferences page
@@ -47,7 +47,7 @@ export const Preferences = withStyles(preferencesStyles)((props: WithStyles<type
         ];
         return (
           <ModuleProvider module="users">
-            <ItemDefinitionProvider
+            <ItemProvider
               itemDefinition="user"
               properties={properties}
               forId={userData.id}
@@ -77,7 +77,7 @@ export const Preferences = withStyles(preferencesStyles)((props: WithStyles<type
                   differingOnly: true,
                 }}
               />
-              <ItemDefinitionLoader>
+              <ItemLoader>
                 <Container maxWidth="md" className={props.classes.container}>
                   <Paper className={props.classes.paper}>
                     <Entry id="e_notifications" icon={<NotificationsIcon />} />
@@ -102,7 +102,7 @@ export const Preferences = withStyles(preferencesStyles)((props: WithStyles<type
                     </Box>
                   </Paper>
                 </Container>
-              </ItemDefinitionLoader>
+              </ItemLoader>
               <SubmitActioner>
                 {(actioner) => (
                   <React.Fragment>
@@ -123,7 +123,7 @@ export const Preferences = withStyles(preferencesStyles)((props: WithStyles<type
                   </React.Fragment>
                 )}
               </SubmitActioner>
-            </ItemDefinitionProvider>
+            </ItemProvider>
           </ModuleProvider>
         );
       }}

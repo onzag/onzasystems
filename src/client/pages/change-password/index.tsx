@@ -1,14 +1,14 @@
 import React from "react";
 
 import { ModuleProvider } from "@onzag/itemize/client/providers/module";
-import { ItemDefinitionProvider } from "@onzag/itemize/client/providers/item-definition";
+import { ItemProvider } from "@onzag/itemize/client/providers/item";
 import UserDataRetriever from "@onzag/itemize/client/components/user/UserDataRetriever";
 import I18nRead from "@onzag/itemize/client/components/localization/I18nRead";
 import TitleSetter from "@onzag/itemize/client/components/util/TitleSetter";
 import Entry from "@onzag/itemize/client/components/property/Entry";
-import SubmitActioner from "@onzag/itemize/client/components/item-definition/SubmitActioner";
+import SubmitActioner from "@onzag/itemize/client/components/item/SubmitActioner";
 
-import { ItemDefinitionLoader } from "@onzag/itemize/client/fast-prototyping/components/item-definition-loader";
+import { ItemLoader } from "@onzag/itemize/client/fast-prototyping/components/item-loader";
 import { Paper, createStyles, withStyles, WithStyles,
   Container, Divider, Box, DoneOutlineIcon } from "@onzag/itemize/client/fast-prototyping/mui-core";
 import Snackbar from "@onzag/itemize/client/fast-prototyping/components/snackbar";
@@ -42,7 +42,7 @@ export const ChangePassword = withStyles(changePasswordStyles)((props: WithStyle
       {(userData) => {
         return (
           <ModuleProvider module="users">
-            <ItemDefinitionProvider
+            <ItemProvider
               itemDefinition="user"
               properties={[
                 "password",
@@ -62,7 +62,7 @@ export const ChangePassword = withStyles(changePasswordStyles)((props: WithStyle
                   );
                 }}
               </I18nRead>
-              <ItemDefinitionLoader>
+              <ItemLoader>
                 <Container maxWidth="md" className={props.classes.container}>
                   <Paper className={props.classes.paper}>
 
@@ -106,7 +106,7 @@ export const ChangePassword = withStyles(changePasswordStyles)((props: WithStyle
                         i18nId="change_password"
                         options={{
                           properties: ["password"],
-                          propertiesToCleanOnSuccess: ["password"],
+                          propertiesToRestoreOnSuccess: ["password"],
                           policies: [["edit", "REQUIRES_PASSWORD_CONFIRMATION", "password"]],
                           policiesToCleanOnSuccess: [["edit", "REQUIRES_PASSWORD_CONFIRMATION", "password"]],
                           unpokeAfterAny: true,
@@ -121,7 +121,7 @@ export const ChangePassword = withStyles(changePasswordStyles)((props: WithStyle
                     </Box>
                   </Paper>
                 </Container>
-              </ItemDefinitionLoader>
+              </ItemLoader>
               <SubmitActioner>
                 {(actioner) => (
                   <Snackbar
@@ -133,7 +133,7 @@ export const ChangePassword = withStyles(changePasswordStyles)((props: WithStyle
                   />
                 )}
               </SubmitActioner>
-            </ItemDefinitionProvider>
+            </ItemProvider>
           </ModuleProvider>
         );
       }}

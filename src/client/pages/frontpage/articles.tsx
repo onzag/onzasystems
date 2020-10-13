@@ -1,11 +1,11 @@
 import React from "react";
 import { ModuleProvider } from "@onzag/itemize/client/providers/module";
-import { ItemDefinitionProvider } from "@onzag/itemize/client/providers/item-definition";
+import { ItemProvider } from "@onzag/itemize/client/providers/item";
 import View from "@onzag/itemize/client/components/property/View";
 import AppLanguageRetriever from "@onzag/itemize/client/components/localization/AppLanguageRetriever";
 import Link from "@onzag/itemize/client/components/navigation/Link";
 import I18nRead from "@onzag/itemize/client/components/localization/I18nRead";
-import { ItemDefinitionLoader } from "@onzag/itemize/client/fast-prototyping/components/item-definition-loader";
+import { ItemLoader } from "@onzag/itemize/client/fast-prototyping/components/item-loader";
 
 import {
   withStyles, createStyles, WithStyles, CardActionArea, CardMedia,
@@ -58,7 +58,7 @@ export const Articles = withStyles(articlesStyles)((props: WithStyles<typeof art
               <Grid container={true} spacing={3} className={props.classes.gridContainer}>
                 {[2, 3, 4, 5, 6, 7, 8, 9, 10].map((itemId) => (
                   <Grid item={true} xs={12} sm={12} md={4} lg={4} key={itemId}>
-                    <ItemDefinitionProvider
+                    <ItemProvider
                       itemDefinition="article"
                       forId={itemId}
                       forVersion={languageData.currentLanguage.code}
@@ -73,12 +73,12 @@ export const Articles = withStyles(articlesStyles)((props: WithStyles<typeof art
                     >
                       <Link to={`/article/${itemId}`} as="div">
                         <Card>
-                          <ItemDefinitionLoader>
+                          <ItemLoader>
                             <View id="summary" />
-                          </ItemDefinitionLoader>
+                          </ItemLoader>
                         </Card>
                       </Link>
-                    </ItemDefinitionProvider>
+                    </ItemProvider>
                   </Grid>
                 ))}
               </Grid>

@@ -1,7 +1,7 @@
 import React from "react";
-import { ItemDefinitionProvider } from "@onzag/itemize/client/providers/item-definition";
+import { ItemProvider } from "@onzag/itemize/client/providers/item";
 import AppLanguageRetriever from "@onzag/itemize/client/components/localization/AppLanguageRetriever";
-import { ItemDefinitionLoader } from "@onzag/itemize/client/fast-prototyping/components/item-definition-loader";
+import { ItemLoader } from "@onzag/itemize/client/fast-prototyping/components/item-loader";
 import View from "@onzag/itemize/client/components/property/View";
 import { ModuleProvider } from "@onzag/itemize/client/providers/module";
 
@@ -60,7 +60,7 @@ export const FragmentBit = withStyles(fragmentBitStyles)((props: IFragmentBitPro
         <ModuleProvider module="cms">
           <AppLanguageRetriever>
             {(languageData) => (
-              <ItemDefinitionProvider
+              <ItemProvider
                 itemDefinition="fragment"
                 forId={props.id}
                 forVersion={languageData.currentLanguage.code}
@@ -76,11 +76,11 @@ export const FragmentBit = withStyles(fragmentBitStyles)((props: IFragmentBitPro
                   <View id="title" capitalize={true} />
                 </Typography>
                 <div className={props.classes.container2}>
-                  <ItemDefinitionLoader>
+                  <ItemLoader>
                     <View id="content" />
-                  </ItemDefinitionLoader>
+                  </ItemLoader>
                 </div>
-              </ItemDefinitionProvider>
+              </ItemProvider>
             )}
           </AppLanguageRetriever>
         </ModuleProvider>

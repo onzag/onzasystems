@@ -1,12 +1,12 @@
 import React from "react";
 
 import { ModuleProvider } from "@onzag/itemize/client/providers/module";
-import { ItemDefinitionProvider } from "@onzag/itemize/client/providers/item-definition";
+import { ItemProvider } from "@onzag/itemize/client/providers/item";
 import View from "@onzag/itemize/client/components/property/View";
 import AppLanguageRetriever from "@onzag/itemize/client/components/localization/AppLanguageRetriever";
 
 import { withStyles, WithStyles } from "@onzag/itemize/client/fast-prototyping/mui-core";
-import { ItemDefinitionLoader } from "@onzag/itemize/client/fast-prototyping/components/item-definition-loader";
+import { ItemLoader } from "@onzag/itemize/client/fast-prototyping/components/item-loader";
 
 /**
  * The hero style
@@ -34,7 +34,7 @@ export const Hero = withStyles(heroStyle)((props: WithStyles<typeof heroStyle>) 
       <ModuleProvider module="cms">
         <AppLanguageRetriever>
           {(languageData) => (
-            <ItemDefinitionProvider
+            <ItemProvider
               itemDefinition="fragment"
               forId={1}
               forVersion={languageData.currentLanguage.code}
@@ -47,10 +47,10 @@ export const Hero = withStyles(heroStyle)((props: WithStyles<typeof heroStyle>) 
               }
               static="NO_LISTENING"
             >
-              <ItemDefinitionLoader>
+              <ItemLoader>
                 <View id="content" />
-              </ItemDefinitionLoader>
-            </ItemDefinitionProvider>
+              </ItemLoader>
+            </ItemProvider>
           )}
         </AppLanguageRetriever>
       </ModuleProvider>
