@@ -4,6 +4,7 @@
 /devenv
 /logs
 /deployments
+/uploads
 .npm-token
 npm-debug.log
 db-status.json

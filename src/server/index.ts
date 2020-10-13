@@ -51,9 +51,81 @@ initializeServer(
           ogImage: "/rest/resource/icons/android-chrome-512x512.png",
           collect: [
             ["cms", "fragment", 1, lang],
+            ["cms", "article", 2, lang],
+            ["cms", "article", 3, lang],
+            ["cms", "article", 4, lang],
+            ["cms", "article", 5, lang],
+            ["cms", "article", 6, lang],
+            ["cms", "article", 7, lang],
+            ["cms", "article", 8, lang],
+            ["cms", "article", 9, lang],
+            ["cms", "article", 10, lang],
+            ["cms", "fragment", 11, lang],
+            ["cms", "fragment", 12, lang],
+            ["cms", "fragment", 13, lang],
           ],
           collectResources: [],
         };
+      },
+      "/article/:id": (req, lang, root) => {
+        const articleIdef = root.getModuleFor(["cms"]).getItemDefinitionFor(["article"]);
+        const articleId = parseInt(req.params.id, 10);
+        if (isNaN(articleId)) {
+          return null;
+        }
+        return {
+          title: (collectedValues) => {
+            if (!collectedValues[0] || !collectedValues[0].value || !collectedValues[0].value.DATA) {
+              return null;
+            }
+
+            return collectedValues[0].value.DATA.title;
+          },
+          description: (collectedValues) => {
+            if (!collectedValues[0] || !collectedValues[0].value || !collectedValues[0].value.DATA) {
+              return null;
+            }
+            return collectedValues[0].value.DATA.summary || null;
+          },
+          ogTitle: (collectedValues) => {
+            if (!collectedValues[0] || !collectedValues[0].value || !collectedValues[0].value.DATA) {
+              return null;
+            }
+
+            return collectedValues[0].value.DATA.title;
+          },
+          ogDescription: (collectedValues) => {
+            if (!collectedValues[0] || !collectedValues[0].value || !collectedValues[0].value.DATA) {
+              return null;
+            }
+
+            return collectedValues[0].value.DATA.summary;
+          },
+          ogImage: (collectedValues, config) => {
+            if (!collectedValues[0] || !collectedValues[0].value || !collectedValues[0].value.DATA) {
+              return null;
+            }
+            const summaryImageProperty = articleIdef.getPropertyDefinitionFor("summary_image", false);
+            const absolutedFile = fileURLAbsoluter(
+              process.env.NODE_ENV === "production" ? config.productionHostname : config.developmentHostname,
+              config.containersHostnamePrefixes,
+              collectedValues[0].value.DATA.summary_image,
+              articleIdef,
+              collectedValues[0].value.id,
+              collectedValues[0].value.version,
+              collectedValues[0].value.container_id,
+              null,
+              summaryImageProperty,
+              false,
+            );
+            // no profile picture, absolutedFile might be null, then set it to the standard icon
+            return (absolutedFile && absolutedFile.url) || "/rest/resource/icons/android-chrome-512x512.png";
+          },
+          collect: [
+            ["cms", "article", articleId, lang],
+          ],
+          collectResources: [],
+        }
       },
       "/profile/:id": (req, lang, root) => {
         const userIdef = root.getModuleFor(["users"]).getItemDefinitionFor(["user"]);
@@ -135,6 +207,12 @@ initializeServer(
         collect: [
           ["users", "user"],
         ],
+      },
+      "article/:id": {
+        crawable: true,
+        collect: [
+          ["cms", "article"],
+        ]
       },
     },
   },
