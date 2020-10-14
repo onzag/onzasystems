@@ -125,7 +125,7 @@ initializeServer(
             ["cms", "article", articleId, lang],
           ],
           collectResources: [],
-        }
+        };
       },
       "/profile/:id": (req, lang, root) => {
         const userIdef = root.getModuleFor(["users"]).getItemDefinitionFor(["user"]);
@@ -212,7 +212,7 @@ initializeServer(
         crawable: true,
         collect: [
           ["cms", "article"],
-        ]
+        ],
       },
     },
   },
